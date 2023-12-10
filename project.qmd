@@ -1,10 +1,10 @@
 ---
 title: DANL Project
-subtitle: "Data-Driven Mastery: Unlocking Business Potential"
+subtitle: "fill in with title of project"
 author: 
-  - Name 1
-  - Name 2
-  - Name 3
+  - Name 1 Chloe Schelin
+  - Name 2 Jessica Horst
+  - Name 3 Kathryn Szokoli
   - Name 4
   - Name 5
 
