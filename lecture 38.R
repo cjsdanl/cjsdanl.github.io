@@ -50,3 +50,24 @@ y <- tribble(
   4, "y3" )
 join_left <- x %>% 
   left_join(y)
+  # a left join keeps all observations in x data.frame
+  # the most commonly used join is the left join
+join_left <- x %>% 
+  left_join(y)
+
+# joins
+  # defining the key columns
+    # by = "a": uses only variable a
+    # by = c("a" = "b"): match variable a in data frame x to variable b in data frame y
+# Ex.
+flights2 %>% 
+  left_join(weather)
+flights2 %>% 
+  left_join(planes, 
+            by = "tailnum")
+flights2 %>% 
+  left_join(airports, 
+            c("dest" = "faa"))
+flights2 %>% 
+  left_join(airports, 
+            c("origin" = "faa"))
