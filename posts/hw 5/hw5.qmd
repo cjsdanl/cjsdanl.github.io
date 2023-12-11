@@ -1,0 +1,9 @@
+## Question 2 for HW 5
+library(dplyr)
+```{r}
+NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
+```
+## Q2a
+NFL2022_stuffs <- subset(NFL2022_stuffs, !is.na(posteam))
+
+##Q2b

@@ -1,6 +1,6 @@
 ---
 title: DANL Project
-subtitle: "Defining NFL Data"
+subtitle: "Defining Data: "
 author: 
   - Name 1 Chloe Schelin
   - Name 2 Jessica Horst
