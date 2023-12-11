@@ -1,0 +1,14 @@
+{
+  "hash": "4a28eea6c15f57928631e1d857ee3a4a",
+  "result": {
+    "markdown": "---\ntitle: \"Spotify\"\nauthor: \"Chloe Schelin\"\ndate: \"2023-10-30\"\ncategories: [spotify, code, analysis]\nimage: \"image.png\"\nfrom: markdown+emoji\n\nexecute: \n  warning: false\n  message: false\n  \ntoc: true\n---\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
