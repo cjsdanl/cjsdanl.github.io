@@ -1,5 +1,5 @@
 ---
-title: "Data I've Collected"
+title: "Data Collected!"
 listing:
   contents: posts
   type: default

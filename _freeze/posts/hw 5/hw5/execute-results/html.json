@@ -1,0 +1,14 @@
+{
+  "hash": "99a22fb25a79ad7a222561e8111a2981",
+  "result": {
+    "markdown": "---\ntitle: \"Spotify\"\nauthor: \"Chloe Schelin\"\ndate: \"2023-12-11\"\ncategories: [spotify, code, analysis]\nimage: \"spotify.png\"\nfrom: markdown+emoji\n\nexecute: \n  warning: false\n  message: false\n  \ntoc: true\n---\n\n\n\n\n\n## Question 2 for HW 5\n\n\n::: {.cell}\n\n```{.r .cell-code}\nNFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')\n```\n:::\n\n## Q2a\nNFL2022_stuffs <- subset(NFL2022_stuffs, !is.na(posteam))\n\n##Q2b\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

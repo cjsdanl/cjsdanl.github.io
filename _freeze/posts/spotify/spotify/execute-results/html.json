@@ -1,8 +1,10 @@
 {
-  "hash": "4a28eea6c15f57928631e1d857ee3a4a",
+  "hash": "c7c365f630a42e71b86d791a011dbb28",
   "result": {
-    "markdown": "---\ntitle: \"Spotify\"\nauthor: \"Chloe Schelin\"\ndate: \"2023-10-30\"\ncategories: [spotify, code, analysis]\nimage: \"image.png\"\nfrom: markdown+emoji\n\nexecute: \n  warning: false\n  message: false\n  \ntoc: true\n---\n\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Spotify\"\nauthor: \"Chloe Schelin\"\ndate: \"2023-12-11\"\ncategories: [spotify, code, analysis]\nimage: \"spotify.png\"\nfrom: markdown+emoji\n\nexecute: \n  warning: false\n  message: false\n  \ntoc: true\n---\n\n\n\n\n\nLets analyze the `spotify_all` data:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nspotify_all <- read_csv('https://bcdanl.github.io/data/spotify_all.csv')\n```\n:::\n\n\n## Q1a\n\n\n::: {.cell}\n\n```{.r .cell-code}\nQ1a <- spotify_all %>% \n  count(artist_name, track_name) %>% \n  arrange(-n) %>% \n  head(10)\n\n## Q1b\nQ1b <- spotify_all %>% \n  group_by(artist_name) %>% \n  mutate(n_popular_artist = n()) %>% \n  ungroup() %>% \n  mutate( artist_ranking = dense_rank( desc(n_popular_artist) ) ) %>% \n  filter( artist_ranking <= 5) %>% \n  group_by(artist_name, track_name) %>% \n  mutate(n_popular_track = n()) %>% \n  group_by(artist_name) %>% \n  mutate(track_ranking = dense_rank( desc(n_popular_track) ) ) %>% \n  filter( track_ranking <= 2) %>%   # I just wanted to see the top two tracks for each artist\n  select(artist_name, artist_ranking, n_popular_artist, track_name, track_ranking, n_popular_track) %>% \n  distinct() %>% \n  arrange(artist_ranking, track_ranking)\n\n## Q1c\nQ1c <- spotify_all %>% \n  group_by(artist_name) %>% \n  mutate(n_popular_artist = n()) %>% \n  ungroup() %>% \n  mutate( artist_ranking = dense_rank( desc(n_popular_artist) ) ) %>% \n  filter( artist_ranking <= 10) \n  \n# boxplot\nggplot(Q1c,\n       aes(x = pos, y = fct_reorder(artist_name, -artist_ranking)) ) +\n  geom_boxplot() +\n  stat_summary(\n    fun = mean,\n    color = 'red'\n  )\n```\n\n::: {.cell-output-display}\n![](spotify_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n\n```{.r .cell-code}\n# histogram\nggplot(Q1c) +\n  geom_histogram(aes(x = pos), binwidth = 1) + \n  facet_grid(fct_reorder(artist_name, artist_ranking) ~ .  , switch = \"y\") +\n  theme(strip.text.y.left = element_text(angle = 0))\n```\n\n::: {.cell-output-display}\n![](spotify_files/figure-html/unnamed-chunk-3-2.png){width=672}\n:::\n\n```{.r .cell-code}\n## Q1d\nQ1d <- spotify_all %>% \n  count(pid, playlist_name, artist_name) %>% \n  rename(n_artist = n) %>% \n  arrange(pid, -n_artist, artist_name)\n```\n:::\n",
+    "supporting": [
+      "spotify_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
