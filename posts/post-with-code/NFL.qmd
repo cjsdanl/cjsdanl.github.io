@@ -1,10 +1,10 @@
 ---
-title: "Spotify"
+title: "NFL"
 author: "Chloe Schelin"
 date: "2023-12-11"
-categories: [spotify, code, analysis]
-image: "spotify.png"
-from: markdown+emoji
+categories: [NFL, analysis, code]
+image: "NFL.png"
+from: markdown + emoji
 
 execute: 
   warning: false
@@ -33,16 +33,39 @@ theme_set(theme_ipsum()+
                 )
           )
 
-
 ```
 
-
-## Question 2 for HW 5
-
+This is a post with executable code.
 ```{r}
 NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
 ```
-## Q2a
-NFL2022_stuffs <- subset(NFL2022_stuffs, !is.na(posteam))
 
-##Q2b
+
+```{r}
+## Q2a
+NFL2022_stuffs<- subset(NFL2022_stuffs, !is.na(posteam))
+## Q2b
+if (!require(dplyr)) install.packages("dylpr", dependencies = TRUE)
+library(dplyr)
+q2b <- NFL2022_stuffs %>% 
+  filter(
+    wp > 0.20 & wp < 0.75,
+    down <= 2,
+    half_seconds_remaining > 120
+  )
+q2b1 <- q2b %>% 
+  group_by(posteam) %>% 
+  summarize(mean_pass = mean(pass, na.rm = TRUE))
+## Q2c
+library(ggplot2)
+q2c <- q2b1 %>% 
+  arrange(mean_pass) %>% 
+  mutate(posteam = factor(posteam, levels = unique(posteam)))
+ggplot(q2c, aes(x = posteam, y = mean_pass)) +
+  geom_point() +
+  labs(title = "Mean Value of Pass for Each Posteam",
+       x = "posteam",
+       y = "Mean Pass")
+# Q2d
+# Q2e
+```

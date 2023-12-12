@@ -15,8 +15,6 @@ toc: true
 
 ```{r}
 #| include: false
-#| eval: true
-
 
 library(knitr)
 library(rmarkdown)

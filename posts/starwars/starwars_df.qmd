@@ -33,7 +33,7 @@ theme_set(theme_ipsum()+
           )
 ```
 
-Let's analyze the `starwars` data:
+Let's analyze the `starwars` data: :star:
 
 ```{r}
 starwars <- read_csv("https://bcdanl.github.io/data/starwars.csv")
@@ -95,4 +95,132 @@ ggplot(data =
 
 ```
 
+```{r}
+
+# Answer for Q2a
+library(gapminder)
+library(tidyverse)
+path_starwars <- '/Users/chloeschelin/Downloads/starwars.csv'
+starwars <- read_csv(path_starwars)
+
+# Variable Description for starwars ---------------------------------------
+
+# The following describes the variables 
+# in the `starwars` data.frame.
+
+# films: List of films the character appeared in
+# name: Name of the character
+# species: Name of species
+# height: Height (cm)
+# mass: Weight (kg)
+# hair_color, skin_color, eye_color: Hair, skin, and eye colors
+# birth_year: Year born (BBY = Before Battle of Yavin)
+# sex: The biological sex of the character, 
+# namely male, female, hermaphroditic, or none (as in the case for Droids).
+# gender: The gender role or gender identity of the character 
+# as determined by their personality or 
+# the way they were programmed (as in the case for Droids).
+# homeworld: Name of homeworld
+
+
+# Answer for Q2b
+starwars[ starwars$species == "Droid", ]
+  #18 characters
+
+
+# Answer for Q2c
+#q2c <- prop.table( table( DATA.FRAME$VARIABLE ) )
+q2c <- prop.table( table( starwars$films ) )
+q2c <- table(starwars$name)
+q2c
+  #R2-D2
+
+# Answer for Q2d
+summary(starwars$height)
+  #minimum- 66
+  #1st quartile- 167
+  #median- 178
+  #3rd quartile- 188
+  #maximum- 264
+    #the median value is different from the mean because the median
+      #puts all the heights in numerical order and chooses the middle
+      #value, where the mean leaves the values as they are placed
+    # the median is greater than the mean when the distribution is skewed to the left
+    #the mean is greater than the median when the distribution is skewed to the right
+
+# Q2e --------------------------------------------------------------
+# Provide the R code to find the number of unique/distinct 
+# `homeworld` values.
+
+# Answer for Q2e
+unique_homeworlds <- unique(starwars$homeworld)
+print(unique_homeworlds)
+
+
+# Question 3. Data Visualization with gapminder ----------------------------
+
+
+# Q3a ---------------------------------------------------------------------
+# Provide the R code to install the R package, `gapminder`.
+
+# Answer for Q3a
+install.packages("gapminder")
+
+
+# Q3b ---------------------------------------------------------------------
+# Load the `gapminder` data.frame provided by the R package, 
+# `gapminder`.
+
+# Answer for Q3b
+library('gapminder')
+
+
+
+# Variable Description for gapminder data.frame ------------------------------
+
+# The following describe the variables in the `gapminder` data.frame.
+
+# `country`
+# factor with 142 levels
+
+# `continent`
+# factor with 5 levels
+
+# `year`
+# ranges from 1952 to 2007 in increments of 5 years
+
+# `lifeExp`
+# life expectancy at birth, in years
+
+# `pop`
+# population
+
+# `gdpPercap`
+# GDP per capita (US$, inflation-adjusted)
+
+
+
+
+# Q3c ---------------------------------------------------------------------
+
+# Provide ggplot code and comments to describe 
+# the relationship between `gdpPercap` and `lifeExp`.
+
+# Answer for Q3c
+ggplot(data = gapminder) +
+  geom_point(mapping = aes(x = gdpPercap, y = lifeExp))
+
+
+
+# Q3d ---------------------------------------------------------------------
+
+# Provide ggplot code and comments to describe 
+# how the relationship between `gdpPercap` and `lifeExp` 
+# varies by `continent`.
+
+# Answer for Q3d
+ggplot(data = gapminder) +
+  geom_point(mapping = aes(x = gdpPercap, y = lifeExp,
+                           color = continent))
+```
 

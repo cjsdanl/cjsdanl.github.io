@@ -1,0 +1,16 @@
+{
+  "hash": "5d497ccfa28416e31b7a43c3d4295649",
+  "result": {
+    "markdown": "---\ntitle: \"NFL Data\"\nauthor: \"Chloe Schelin\"\ndate: \"2023-12-11\"\ncategories: [spotify, code, analysis]\nimage: \"NFL.png\"\nfrom: markdown+emoji\n\nexecute: \n  warning: false\n  message: false\n  \ntoc: true\n---\n\n\n\n\n\n## Question 2 for HW 5\n\n\n::: {.cell}\n\n```{.r .cell-code}\nNFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n## Q2a\nNFL2022_stuffs<- subset(NFL2022_stuffs, !is.na(posteam))\n## Q2b\nif (!require(dplyr)) install.packages(\"dylpr\", dependencies = TRUE)\nlibrary(dplyr)\nq2b <- NFL2022_stuffs %>% \n  filter(\n    wp > 0.20 & wp < 0.75,\n    down <= 2,\n    half_seconds_remaining > 120\n  )\nq2b1 <- q2b %>% \n  group_by(posteam) %>% \n  summarize(mean_pass = mean(pass, na.rm = TRUE))\n## Q2c\nlibrary(ggplot2)\nq2c <- q2b1 %>% \n  arrange(mean_pass) %>% \n  mutate(posteam = factor(posteam, levels = unique(posteam)))\nggplot(q2c, aes(x = posteam, y = mean_pass)) +\n  geom_point() +\n  labs(title = \"Mean Value of Pass for Each Posteam\",\n       x = \"posteam\",\n       y = \"Mean Pass\")\n```\n\n::: {.cell-output-display}\n![](NFL_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n\n```{.r .cell-code}\n# Q2d\n# Q2e\n```\n:::\n",
+    "supporting": [
+      "NFL_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
